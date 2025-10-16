@@ -18,10 +18,10 @@ const BookingFlow = ({ bookingData }) => {
   const [error, setError] = useState("");
   
   // Form data
-  const [guestInfo, setGuestInfo] = useState({
-    name: "John Smith",
-    email: "john.smith@email.com",
-    phone: "+1 (555) 123-4567"
+const [guestInfo, setGuestInfo] = useState({
+    name: "",
+    email: "",
+    phone: ""
   });
   const [specialRequests, setSpecialRequests] = useState("");
   const [promoCode, setPromoCode] = useState("");
