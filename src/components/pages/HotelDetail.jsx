@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import ReviewModal from "@/components/organisms/ReviewModal";
+import BookingModal from "@/components/organisms/BookingModal";
 import ReviewFilters from "@/components/molecules/ReviewFilters";
 import hotelService from "@/services/api/hotelService";
 import roomService from "@/services/api/roomService";
@@ -26,6 +27,7 @@ const [hotel, setHotel] = useState(null);
   const [activeTab, setActiveTab] = useState("overview");
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [reviewModalOpen, setReviewModalOpen] = useState(false);
+  const [bookingModalOpen, setBookingModalOpen] = useState(false);
   const [filterRating, setFilterRating] = useState("all");
   const [sortBy, setSortBy] = useState("newest");
 
@@ -101,7 +103,7 @@ const handleReviewSubmitted = async (reviewData) => {
     return filtered;
   };
 
-  const handleBookRoom = (room) => {
+const handleBookRoom = (room) => {
     const bookingData = {
       hotelId: hotel.Id,
       roomId: room.Id,
@@ -113,6 +115,16 @@ const handleReviewSubmitted = async (reviewData) => {
     // Store booking data and navigate to checkout
     localStorage.setItem("currentBooking", JSON.stringify(bookingData));
     navigate("/checkout");
+  };
+
+  const handleBookNow = () => {
+    setBookingModalOpen(true);
+  };
+
+  const handleBookingComplete = (confirmationNumber) => {
+    setBookingModalOpen(false);
+    toast.success("Booking confirmed successfully!");
+    navigate(`/confirmation/${confirmationNumber}`);
   };
 
   const calculateNights = () => {
@@ -263,7 +275,7 @@ const tabs = [
               </div>
             </div>
 
-            <div className="lg:w-80">
+<div className="lg:w-80">
               <Card className="p-6">
                 <div className="text-center mb-4">
                   <div className="text-3xl font-bold text-accent mb-1">
@@ -298,10 +310,20 @@ const tabs = [
 
                 <Button 
                   size="lg" 
+                  className="w-full mb-3"
+                  onClick={handleBookNow}
+                >
+                  Book Now
+                  <ApperIcon name="Calendar" className="w-4 h-4" />
+                </Button>
+
+                <Button 
+                  size="lg" 
+                  variant="outline"
                   className="w-full"
                   onClick={() => setActiveTab("rooms")}
                 >
-                  View Rooms & Book
+                  View All Rooms
                   <ApperIcon name="ArrowRight" className="w-4 h-4" />
                 </Button>
 
@@ -765,13 +787,21 @@ const tabs = [
           </div>
         )}
       </div>
-
-      <ReviewModal
+<ReviewModal
         isOpen={reviewModalOpen}
         onClose={() => setReviewModalOpen(false)}
         hotelId={id}
         hotelName={hotel?.name}
         onReviewSubmitted={handleReviewSubmitted}
+      />
+
+      <BookingModal
+        isOpen={bookingModalOpen}
+        onClose={() => setBookingModalOpen(false)}
+        hotel={hotel}
+        searchParams={searchParams}
+        nights={nights}
+        onBookingComplete={handleBookingComplete}
       />
     </div>
   );
