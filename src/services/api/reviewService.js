@@ -29,14 +29,35 @@ class ReviewService {
     return this.reviews.filter(review => review.userId === userId);
   }
 
-  async createReview(reviewData) {
+async createReview(reviewData) {
     await new Promise(resolve => setTimeout(resolve, 400));
     
-    const newId = Math.max(...this.reviews.map(r => r.Id)) + 1;
+    if (!reviewData.photos || !Array.isArray(reviewData.photos)) {
+      reviewData.photos = [];
+    }
+
+    const requiredFields = ['cleanlinessRating', 'comfortRating', 'locationRating', 'valueRating', 'overallRating'];
+    for (const field of requiredFields) {
+      if (!reviewData[field] || reviewData[field] < 1 || reviewData[field] > 5) {
+        throw new Error(`Invalid ${field}: must be between 1 and 5`);
+      }
+    }
+    
+    const newId = Math.max(...this.reviews.map(r => r.Id), 0) + 1;
     
     const newReview = {
       Id: newId,
-      ...reviewData,
+      hotelId: reviewData.hotelId,
+      userId: reviewData.userId,
+      bookingId: reviewData.bookingId || null,
+      cleanlinessRating: reviewData.cleanlinessRating,
+      comfortRating: reviewData.comfortRating,
+      locationRating: reviewData.locationRating,
+      valueRating: reviewData.valueRating,
+      overallRating: reviewData.overallRating,
+      reviewText: reviewData.reviewText,
+      travelerType: reviewData.travelerType,
+      photos: reviewData.photos,
       createdAt: new Date().toISOString(),
       helpfulVotes: 0
     };

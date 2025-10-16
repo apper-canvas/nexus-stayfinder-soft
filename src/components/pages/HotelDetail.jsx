@@ -1,20 +1,23 @@
-import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import Button from "@/components/atoms/Button";
-import Card from "@/components/atoms/Card";
-import Badge from "@/components/atoms/Badge";
-import Loading from "@/components/ui/Loading";
-import Error from "@/components/ui/Error";
-import ApperIcon from "@/components/ApperIcon";
+import React, { useCallback, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import ReviewModal from "@/components/organisms/ReviewModal";
+import ReviewFilters from "@/components/molecules/ReviewFilters";
 import hotelService from "@/services/api/hotelService";
 import roomService from "@/services/api/roomService";
 import reviewService from "@/services/api/reviewService";
+import ApperIcon from "@/components/ApperIcon";
+import Button from "@/components/atoms/Button";
+import Badge from "@/components/atoms/Badge";
+import Card from "@/components/atoms/Card";
+import Loading from "@/components/ui/Loading";
+import Error from "@/components/ui/Error";
 
 const HotelDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   
-  const [hotel, setHotel] = useState(null);
+const [hotel, setHotel] = useState(null);
   const [rooms, setRooms] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [reviewStats, setReviewStats] = useState(null);
@@ -22,6 +25,9 @@ const HotelDetail = () => {
   const [error, setError] = useState("");
   const [activeTab, setActiveTab] = useState("overview");
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [reviewModalOpen, setReviewModalOpen] = useState(false);
+  const [filterRating, setFilterRating] = useState("all");
+  const [sortBy, setSortBy] = useState("newest");
 
   // Search params from localStorage or URL
   const [searchParams, setSearchParams] = useState(() => {
@@ -33,11 +39,7 @@ const HotelDetail = () => {
     };
   });
 
-  useEffect(() => {
-    loadHotelData();
-  }, [id]);
-
-  const loadHotelData = async () => {
+const loadHotelData = useCallback(async () => {
     setLoading(true);
     setError("");
     
@@ -58,6 +60,45 @@ const HotelDetail = () => {
     } finally {
       setLoading(false);
     }
+  }, [id]);
+
+  useEffect(() => {
+    loadHotelData();
+  }, [loadHotelData]);
+
+const handleReviewSubmitted = async (reviewData) => {
+    try {
+      await reviewService.createReview(reviewData);
+      await loadHotelData();
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const handleFilterChange = (filters) => {
+    setFilterRating(filters.rating);
+    setSortBy(filters.sort);
+  };
+
+  const getFilteredAndSortedReviews = () => {
+    let filtered = [...reviews];
+
+    if (filterRating !== "all") {
+      filtered = filtered.filter(r => r.overallRating === parseInt(filterRating));
+    }
+
+    filtered.sort((a, b) => {
+      if (sortBy === "newest") {
+        return new Date(b.createdAt) - new Date(a.createdAt);
+      } else if (sortBy === "oldest") {
+        return new Date(a.createdAt) - new Date(b.createdAt);
+      } else if (sortBy === "highest") {
+        return b.overallRating - a.overallRating;
+      }
+      return 0;
+    });
+
+    return filtered;
   };
 
   const handleBookRoom = (room) => {
@@ -119,13 +160,42 @@ const HotelDetail = () => {
     ));
   };
 
-  const tabs = [
+const tabs = [
     { id: "overview", label: "Overview", icon: "Info" },
     { id: "rooms", label: "Rooms", icon: "Bed" },
     { id: "amenities", label: "Amenities", icon: "Star" },
     { id: "location", label: "Location", icon: "MapPin" },
-    { id: "reviews", label: "Reviews", icon: "MessageSquare" }
+    { 
+      id: "reviews", 
+      label: "Reviews", 
+      icon: "MessageSquare",
+      badge: reviewStats?.totalReviews 
+    }
   ];
+
+  const renderCategoryRating = (label, rating) => {
+    return (
+      <div className="flex items-center justify-between">
+        <span className="text-sm text-gray-600">{label}</span>
+        <div className="flex items-center gap-2">
+          <div className="flex">
+            {Array.from({ length: 5 }, (_, i) => (
+              <ApperIcon
+                key={i}
+                name="Star"
+                className={`w-3 h-3 ${
+                  i < rating ? "text-yellow-400 fill-current" : "text-gray-300"
+                }`}
+              />
+            ))}
+          </div>
+          <span className="text-sm font-medium text-gray-900">
+            {rating.toFixed(1)}
+          </span>
+        </div>
+      </div>
+    );
+  };
 
   if (loading) {
     return <Loading />;
@@ -284,7 +354,7 @@ const HotelDetail = () => {
       </div>
 
       {/* Tabs */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="border-b border-gray-200">
           <nav className="flex gap-8">
             {tabs.map((tab) => (
@@ -299,6 +369,11 @@ const HotelDetail = () => {
               >
                 <ApperIcon name={tab.icon} className="w-4 h-4" />
                 {tab.label}
+                {tab.badge && (
+                  <Badge variant="primary" size="sm" className="ml-1">
+                    {tab.badge}
+                  </Badge>
+                )}
               </button>
             ))}
           </nav>
@@ -540,69 +615,96 @@ const HotelDetail = () => {
           </div>
         )}
 
-        {/* Reviews Tab */}
+{/* Reviews Tab */}
         {activeTab === "reviews" && (
           <div>
-            <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-display font-bold text-gray-900">
                 Guest Reviews
               </h2>
-              {reviewStats && (
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-gray-900">
-                    {reviewStats.averageRating}
+              <div className="flex items-center gap-4">
+                {reviewStats && (
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-gray-900">
+                      {reviewStats.averageRating}
+                    </div>
+                    <div className="flex justify-center gap-1 mb-1">
+                      {renderStars(Math.round(reviewStats.averageRating))}
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      {reviewStats.totalReviews} reviews
+                    </div>
                   </div>
-                  <div className="flex justify-center gap-1 mb-1">
-                    {renderStars(Math.round(reviewStats.averageRating))}
-                  </div>
-                  <div className="text-sm text-gray-600">
-                    {reviewStats.totalReviews} reviews
-                  </div>
-                </div>
-              )}
+                )}
+<Button
+                  onClick={() => setReviewModalOpen(true)}
+                  className="ml-4"
+                >
+                  <ApperIcon name="Plus" className="w-4 h-4" />
+                  Write a Review
+                </Button>
+              </div>
             </div>
+            <ReviewFilters
+              onFilterChange={handleFilterChange}
+              activeFilters={{ rating: filterRating, sort: sortBy }}
+            />
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              <div className="lg:col-span-1">
+              <div className="lg:col-span-1 space-y-6">
                 {reviewStats && (
-                  <Card className="p-6">
-                    <h3 className="font-medium text-gray-900 mb-4">
-                      Rating Breakdown
-                    </h3>
-                    <div className="space-y-3">
-                      {Object.entries(reviewStats.ratingBreakdown)
-                        .reverse()
-                        .map(([rating, count]) => (
-                          <div key={rating} className="flex items-center gap-3">
-                            <span className="text-sm w-8">{rating} ★</span>
-                            <div className="flex-1 bg-gray-200 rounded-full h-2">
-                              <div
-                                className="bg-primary h-2 rounded-full"
-                                style={{
-                                  width: `${(count / reviewStats.totalReviews) * 100}%`
-                                }}
-                              />
+                  <>
+                    <Card className="p-6">
+                      <h3 className="font-medium text-gray-900 mb-4">
+                        Rating Breakdown
+                      </h3>
+                      <div className="space-y-3">
+                        {Object.entries(reviewStats.ratingBreakdown)
+                          .reverse()
+                          .map(([rating, count]) => (
+                            <div key={rating} className="flex items-center gap-3">
+                              <span className="text-sm w-8">{rating} ★</span>
+                              <div className="flex-1 bg-gray-200 rounded-full h-2">
+                                <div
+                                  className="bg-primary h-2 rounded-full transition-all"
+                                  style={{
+                                    width: `${reviewStats.totalReviews > 0 ? (count / reviewStats.totalReviews) * 100 : 0}%`
+                                  }}
+                                />
+                              </div>
+                              <span className="text-sm text-gray-600 w-8">
+                                {count}
+                              </span>
                             </div>
-                            <span className="text-sm text-gray-600 w-8">
-                              {count}
-                            </span>
-                          </div>
-                        ))}
-                    </div>
-                  </Card>
+                          ))}
+                      </div>
+                    </Card>
+
+                    <Card className="p-6">
+                      <h3 className="font-medium text-gray-900 mb-4">
+                        Category Ratings
+                      </h3>
+                      <div className="space-y-3">
+                        {renderCategoryRating("Cleanliness", reviewStats.categoryAverages.cleanliness)}
+                        {renderCategoryRating("Comfort", reviewStats.categoryAverages.comfort)}
+                        {renderCategoryRating("Location", reviewStats.categoryAverages.location)}
+                        {renderCategoryRating("Value", reviewStats.categoryAverages.value)}
+                      </div>
+</Card>
+                  </>
                 )}
               </div>
 
               <div className="lg:col-span-2">
                 <div className="space-y-6">
-                  {reviews.map((review) => (
+                  {getFilteredAndSortedReviews().map((review) => (
                     <Card key={review.Id} className="p-6">
                       <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white font-medium">
+                        <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white font-medium flex-shrink-0">
                           {review.userId.charAt(0).toUpperCase()}
                         </div>
-                        <div className="flex-1">
-                          <div className="flex items-center gap-3 mb-2">
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-3 mb-2 flex-wrap">
                             <h4 className="font-medium text-gray-900">Anonymous User</h4>
                             <Badge variant="outline" size="sm">{review.travelerType}</Badge>
                           </div>
@@ -616,25 +718,32 @@ const HotelDetail = () => {
                             </span>
                           </div>
 
+                          <div className="grid grid-cols-2 gap-2 mb-4 p-3 bg-gray-50 rounded-lg">
+                            {renderCategoryRating("Cleanliness", review.cleanlinessRating)}
+                            {renderCategoryRating("Comfort", review.comfortRating)}
+                            {renderCategoryRating("Location", review.locationRating)}
+                            {renderCategoryRating("Value", review.valueRating)}
+                          </div>
+
                           <p className="text-gray-700 leading-relaxed mb-4">
                             {review.reviewText}
                           </p>
 
-                          {review.photos.length > 0 && (
-                            <div className="flex gap-2 mb-4">
+                          {review.photos && review.photos.length > 0 && (
+                            <div className="flex gap-2 mb-4 flex-wrap">
                               {review.photos.map((photo, index) => (
                                 <img
                                   key={index}
                                   src={photo}
-                                  alt="Review photo"
-                                  className="w-16 h-16 object-cover rounded-lg"
+                                  alt={`Review photo ${index + 1}`}
+                                  className="w-20 h-20 object-cover rounded-lg cursor-pointer hover:opacity-80 transition-opacity"
                                 />
                               ))}
                             </div>
                           )}
 
                           <div className="flex items-center gap-4 text-sm text-gray-600">
-                            <button className="flex items-center gap-1 hover:text-primary">
+                            <button className="flex items-center gap-1 hover:text-primary transition-colors">
                               <ApperIcon name="ThumbsUp" className="w-4 h-4" />
                               <span>Helpful ({review.helpfulVotes})</span>
                             </button>
@@ -643,12 +752,27 @@ const HotelDetail = () => {
                       </div>
                     </Card>
                   ))}
-                </div>
+
+                  {getFilteredAndSortedReviews().length === 0 && (
+                    <Card className="p-12 text-center">
+                      <ApperIcon name="MessageSquare" className="w-12 h-12 text-gray-300 mx-auto mb-4" />
+                      <p className="text-gray-600">No reviews match your filters</p>
+                    </Card>
+                  )}
+</div>
               </div>
             </div>
           </div>
         )}
       </div>
+
+      <ReviewModal
+        isOpen={reviewModalOpen}
+        onClose={() => setReviewModalOpen(false)}
+        hotelId={id}
+        hotelName={hotel?.name}
+        onReviewSubmitted={handleReviewSubmitted}
+      />
     </div>
   );
 };
