@@ -115,21 +115,17 @@ function BookingModal({ isOpen, onClose, hotel, searchParams, nights, onBookingC
           {/* Booking Summary */}
           <Card className="p-4 mb-6 bg-gray-50">
             <div className="space-y-2 text-sm">
-<div className="flex justify-between">
+              <div className="flex justify-between">
                 <span className="text-gray-600">Check-in:</span>
-                <span className="font-medium">
-                  {searchParams.checkInDate ? new Date(searchParams.checkInDate).toLocaleDateString() : "Not selected"}
-                </span>
+                <span className="font-medium">{new Date(searchParams.checkInDate).toLocaleDateString()}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-600">Check-out:</span>
-                <span className="font-medium">
-                  {searchParams.checkOutDate ? new Date(searchParams.checkOutDate).toLocaleDateString() : "Not selected"}
-                </span>
+                <span className="font-medium">{new Date(searchParams.checkOutDate).toLocaleDateString()}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-600">Guests:</span>
-                <span className="font-medium">{searchParams.guestCount || "Not selected"}</span>
+                <span className="font-medium">{searchParams.guestCount}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-600">Nights:</span>

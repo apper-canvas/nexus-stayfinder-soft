@@ -32,12 +32,12 @@ const [hotel, setHotel] = useState(null);
   const [sortBy, setSortBy] = useState("newest");
 
   // Search params from localStorage or URL
-const [searchParams, setSearchParams] = useState(() => {
+  const [searchParams, setSearchParams] = useState(() => {
     const stored = localStorage.getItem("hotelSearchParams");
     return stored ? JSON.parse(stored) : {
-      checkInDate: "",
-      checkOutDate: "",
-      guestCount: ""
+      checkInDate: new Date().toISOString().split("T")[0],
+      checkOutDate: new Date(Date.now() + 86400000).toISOString().split("T")[0],
+      guestCount: 2
     };
   });
 

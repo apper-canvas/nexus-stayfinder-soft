@@ -9,7 +9,7 @@ const SearchBar = ({ onSearch, initialValues = {}, className }) => {
   const [destination, setDestination] = useState(initialValues.destination || "");
   const [checkInDate, setCheckInDate] = useState(initialValues.checkInDate || "");
   const [checkOutDate, setCheckOutDate] = useState(initialValues.checkOutDate || "");
-  const [guestCount, setGuestCount] = useState(initialValues.guestCount || "");
+  const [guestCount, setGuestCount] = useState(initialValues.guestCount || 1);
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [loading, setLoading] = useState(false);
