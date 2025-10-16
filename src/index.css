@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+@import 'react-toastify/dist/ReactToastify.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #F8F9FA;
+}
+
+/* Custom toast styling */
+.Toastify__toast {
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  max-width: 420px;
+  padding: 16px;
+}
+
+.Toastify__toast-container {
+  z-index: 9999;
+  top: 20px;
+  right: 20px;
+  width: auto;
+}
+
+.Toastify__toast--success {
+  background: linear-gradient(135deg, #06D6A0 0%, #059669 100%);
+  color: white;
+}
+
+.Toastify__toast--error {
+  background: linear-gradient(135deg, #EF476F 0%, #DC2626 100%);
+  color: white;
+}
+
+.Toastify__toast--warning {
+  background: linear-gradient(135deg, #FFB703 0%, #F59E0B 100%);
+  color: white;
+}
+
+.Toastify__toast--info {
+  background: linear-gradient(135deg, #48CAE4 0%, #0284C7 100%);
+  color: white;
+}
+
+.Toastify__progress-bar {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #0077B6 0%, #00B4D8 100%);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #005885 0%, #0096B8 100%);
+}
+
+/* Smooth transitions */
+* {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(135deg, #0077B6 0%, #F77F00 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: gradient 3s ease infinite;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Card hover effects */
+.hotel-card {
+  transform: translateY(0);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.hotel-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Button animations */
+.btn-primary {
+  background: linear-gradient(135deg, #F77F00 0%, #E5690A 100%);
+  transform: scale(1);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #E5690A 0%, #D4590A 100%);
+  transform: scale(1.02);
+}
+
+.btn-secondary {
+  border: 2px solid #0077B6;
+  color: #0077B6;
+  transform: scale(1);
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(135deg, #0077B6 0%, #005885 100%);
+  color: white;
+  transform: scale(1.02);
+}
+
+/* Map marker pulse animation */
+.marker-pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 119, 182, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(0, 119, 182, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 119, 182, 0);
+  }
+}
+
+/* Loading shimmer animation */
+.shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}

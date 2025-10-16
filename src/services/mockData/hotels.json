@@ -1,0 +1,176 @@
+[
+  {
+    "Id": 1,
+    "name": "Grand Ocean Resort & Spa",
+    "starRating": 5,
+    "description": "Luxury beachfront resort with world-class amenities, stunning ocean views, and exceptional service. Experience the perfect blend of relaxation and adventure.",
+    "address": "123 Ocean Drive",
+    "city": "Miami Beach",
+    "country": "United States",
+    "coordinates": { "lat": 25.7907, "lng": -80.1300 },
+    "photos": [
+      "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800&q=80",
+      "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800&q=80",
+      "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80"
+    ],
+    "amenities": ["WiFi", "Pool", "Spa", "Gym", "Restaurant", "Room Service", "Parking", "Beach Access", "Concierge"],
+    "policies": {
+      "checkIn": "3:00 PM",
+      "checkOut": "11:00 AM",
+      "cancellation": "Free cancellation up to 24 hours before check-in",
+      "pets": "Pet-friendly with additional fee"
+    },
+    "contactEmail": "reservations@grandocean.com",
+    "contactPhone": "+1 (305) 555-0123",
+    "checkInTime": "15:00",
+    "checkOutTime": "11:00",
+    "distanceFromCenter": 2.1,
+    "averageRating": 4.8,
+    "reviewCount": 1247
+  },
+  {
+    "Id": 2,
+    "name": "Metropolitan Business Hotel",
+    "starRating": 4,
+    "description": "Modern business hotel in the heart of downtown, perfect for corporate travelers. Features state-of-the-art meeting facilities and convenient location.",
+    "address": "456 Business Plaza",
+    "city": "New York",
+    "country": "United States",
+    "coordinates": { "lat": 40.7589, "lng": -73.9851 },
+    "photos": [
+      "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80",
+      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80",
+      "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800&q=80"
+    ],
+    "amenities": ["WiFi", "Gym", "Restaurant", "Business Center", "Room Service", "Parking", "Conference Rooms"],
+    "policies": {
+      "checkIn": "2:00 PM",
+      "checkOut": "12:00 PM",
+      "cancellation": "Free cancellation up to 48 hours before check-in",
+      "pets": "No pets allowed"
+    },
+    "contactEmail": "info@metrobusiness.com",
+    "contactPhone": "+1 (212) 555-0456",
+    "checkInTime": "14:00",
+    "checkOutTime": "12:00",
+    "distanceFromCenter": 0.5,
+    "averageRating": 4.2,
+    "reviewCount": 892
+  },
+  {
+    "Id": 3,
+    "name": "Cozy Mountain Lodge",
+    "starRating": 3,
+    "description": "Charming mountain retreat surrounded by nature. Perfect for those seeking tranquility and outdoor adventures with cozy accommodations.",
+    "address": "789 Mountain View Road",
+    "city": "Aspen",
+    "country": "United States",
+    "coordinates": { "lat": 39.1911, "lng": -106.8175 },
+    "photos": [
+      "https://images.unsplash.com/photo-1549294413-26f195200c16?w=800&q=80",
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80",
+      "https://images.unsplash.com/photo-1578645510447-e20b4311e3ce?w=800&q=80"
+    ],
+    "amenities": ["WiFi", "Restaurant", "Fireplace", "Hiking Trails", "Ski Storage", "Parking"],
+    "policies": {
+      "checkIn": "4:00 PM",
+      "checkOut": "10:00 AM",
+      "cancellation": "Free cancellation up to 72 hours before check-in",
+      "pets": "Pet-friendly"
+    },
+    "contactEmail": "stay@mountainlodge.com",
+    "contactPhone": "+1 (970) 555-0789",
+    "checkInTime": "16:00",
+    "checkOutTime": "10:00",
+    "distanceFromCenter": 5.8,
+    "averageRating": 4.5,
+    "reviewCount": 456
+  },
+  {
+    "Id": 4,
+    "name": "Urban Boutique Hotel",
+    "starRating": 4,
+    "description": "Stylish boutique hotel with unique design elements and personalized service. Located in the trendy arts district with easy access to galleries and restaurants.",
+    "address": "321 Arts Quarter",
+    "city": "Austin",
+    "country": "United States",
+    "coordinates": { "lat": 30.2672, "lng": -97.7431 },
+    "photos": [
+      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&q=80",
+      "https://images.unsplash.com/photo-1595576508898-0ad5c879a061?w=800&q=80",
+      "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800&q=80"
+    ],
+    "amenities": ["WiFi", "Gym", "Restaurant", "Bar", "Rooftop Terrace", "Room Service", "Concierge"],
+    "policies": {
+      "checkIn": "3:00 PM",
+      "checkOut": "11:00 AM",
+      "cancellation": "Free cancellation up to 24 hours before check-in",
+      "pets": "Small pets allowed"
+    },
+    "contactEmail": "hello@urbanboutique.com",
+    "contactPhone": "+1 (512) 555-0321",
+    "checkInTime": "15:00",
+    "checkOutTime": "11:00",
+    "distanceFromCenter": 1.2,
+    "averageRating": 4.6,
+    "reviewCount": 723
+  },
+  {
+    "Id": 5,
+    "name": "Seaside Paradise Resort",
+    "starRating": 5,
+    "description": "All-inclusive tropical paradise with pristine beaches, multiple restaurants, and endless entertainment. The ultimate luxury getaway destination.",
+    "address": "100 Paradise Bay",
+    "city": "Key West",
+    "country": "United States",
+    "coordinates": { "lat": 24.5557, "lng": -81.7826 },
+    "photos": [
+      "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&q=80",
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80",
+      "https://images.unsplash.com/photo-1544986581-efac024faf62?w=800&q=80"
+    ],
+    "amenities": ["WiFi", "Pool", "Spa", "Gym", "Restaurant", "Bar", "Beach Access", "Water Sports", "Kids Club", "Tennis Court"],
+    "policies": {
+      "checkIn": "4:00 PM",
+      "checkOut": "11:00 AM",
+      "cancellation": "Free cancellation up to 7 days before check-in",
+      "pets": "No pets allowed"
+    },
+    "contactEmail": "paradise@seasideresort.com",
+    "contactPhone": "+1 (305) 555-0100",
+    "checkInTime": "16:00",
+    "checkOutTime": "11:00",
+    "distanceFromCenter": 8.5,
+    "averageRating": 4.9,
+    "reviewCount": 2103
+  },
+  {
+    "Id": 6,
+    "name": "Historic Downtown Inn",
+    "starRating": 3,
+    "description": "Charming historic inn with vintage character and modern comforts. Walking distance to museums, theaters, and local attractions in the historic district.",
+    "address": "555 Heritage Street",
+    "city": "Charleston",
+    "country": "United States",
+    "coordinates": { "lat": 32.7767, "lng": -79.9311 },
+    "photos": [
+      "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800&q=80",
+      "https://images.unsplash.com/photo-1578645510447-e20b4311e3ce?w=800&q=80",
+      "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80"
+    ],
+    "amenities": ["WiFi", "Restaurant", "Bar", "Historic Tours", "Garden", "Parking"],
+    "policies": {
+      "checkIn": "3:00 PM",
+      "checkOut": "11:00 AM",
+      "cancellation": "Free cancellation up to 48 hours before check-in",
+      "pets": "Pet-friendly with restrictions"
+    },
+    "contactEmail": "stay@historicinn.com",
+    "contactPhone": "+1 (843) 555-0555",
+    "checkInTime": "15:00",
+    "checkOutTime": "11:00",
+    "distanceFromCenter": 0.3,
+    "averageRating": 4.3,
+    "reviewCount": 634
+  }
+]

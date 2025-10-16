@@ -1,0 +1,194 @@
+[
+  {
+    "Id": 1,
+    "hotelId": "1",
+    "name": "Ocean View Suite",
+    "type": "Suite",
+    "capacity": 4,
+    "bedConfiguration": "1 King Bed + Sofa Bed",
+    "photos": [
+      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80",
+      "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800&q=80"
+    ],
+    "amenities": ["Ocean View", "Balcony", "Mini Bar", "Coffee Machine", "Bathtub", "Work Desk"],
+    "pricePerNight": 450,
+    "available": true,
+    "maxOccupancy": 4
+  },
+  {
+    "Id": 2,
+    "hotelId": "1",
+    "name": "Deluxe King Room",
+    "type": "Deluxe",
+    "capacity": 2,
+    "bedConfiguration": "1 King Bed",
+    "photos": [
+      "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800&q=80",
+      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80"
+    ],
+    "amenities": ["City View", "Mini Bar", "Coffee Machine", "Work Desk", "High-Speed WiFi"],
+    "pricePerNight": 320,
+    "available": true,
+    "maxOccupancy": 2
+  },
+  {
+    "Id": 3,
+    "hotelId": "2",
+    "name": "Executive Suite",
+    "type": "Executive",
+    "capacity": 3,
+    "bedConfiguration": "1 King Bed + Sofa",
+    "photos": [
+      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80",
+      "https://images.unsplash.com/photo-1594736797933-d0d62f4fc065?w=800&q=80"
+    ],
+    "amenities": ["Executive Lounge Access", "City View", "Work Area", "Mini Bar", "Premium Bedding"],
+    "pricePerNight": 380,
+    "available": true,
+    "maxOccupancy": 3
+  },
+  {
+    "Id": 4,
+    "hotelId": "2",
+    "name": "Standard Business Room",
+    "type": "Standard",
+    "capacity": 2,
+    "bedConfiguration": "1 Queen Bed",
+    "photos": [
+      "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800&q=80",
+      "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800&q=80"
+    ],
+    "amenities": ["Work Desk", "High-Speed WiFi", "Coffee Machine", "City View"],
+    "pricePerNight": 220,
+    "available": true,
+    "maxOccupancy": 2
+  },
+  {
+    "Id": 5,
+    "hotelId": "3",
+    "name": "Mountain Cabin Suite",
+    "type": "Cabin",
+    "capacity": 6,
+    "bedConfiguration": "2 Queen Beds + Loft",
+    "photos": [
+      "https://images.unsplash.com/photo-1578645510447-e20b4311e3ce?w=800&q=80",
+      "https://images.unsplash.com/photo-1549294413-26f195200c16?w=800&q=80"
+    ],
+    "amenities": ["Mountain View", "Fireplace", "Kitchenette", "Private Deck", "Ski Storage"],
+    "pricePerNight": 280,
+    "available": true,
+    "maxOccupancy": 6
+  },
+  {
+    "Id": 6,
+    "hotelId": "3",
+    "name": "Cozy Lodge Room",
+    "type": "Standard",
+    "capacity": 2,
+    "bedConfiguration": "1 Queen Bed",
+    "photos": [
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80",
+      "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80"
+    ],
+    "amenities": ["Mountain View", "Fireplace", "Coffee Machine", "Hiking Access"],
+    "pricePerNight": 180,
+    "available": true,
+    "maxOccupancy": 2
+  },
+  {
+    "Id": 7,
+    "hotelId": "4",
+    "name": "Artist Loft Suite",
+    "type": "Loft",
+    "capacity": 4,
+    "bedConfiguration": "1 King Bed + Sofa Bed",
+    "photos": [
+      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&q=80",
+      "https://images.unsplash.com/photo-1595576508898-0ad5c879a061?w=800&q=80"
+    ],
+    "amenities": ["Rooftop Terrace Access", "Art Supplies", "Mini Bar", "Work Space", "City View"],
+    "pricePerNight": 350,
+    "available": true,
+    "maxOccupancy": 4
+  },
+  {
+    "Id": 8,
+    "hotelId": "4",
+    "name": "Design Studio Room",
+    "type": "Studio",
+    "capacity": 2,
+    "bedConfiguration": "1 Queen Bed",
+    "photos": [
+      "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800&q=80",
+      "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800&q=80"
+    ],
+    "amenities": ["Unique Design", "Mini Bar", "Coffee Machine", "High-Speed WiFi"],
+    "pricePerNight": 240,
+    "available": true,
+    "maxOccupancy": 2
+  },
+  {
+    "Id": 9,
+    "hotelId": "5",
+    "name": "Presidential Beachfront Villa",
+    "type": "Villa",
+    "capacity": 8,
+    "bedConfiguration": "3 King Beds + 2 Sofa Beds",
+    "photos": [
+      "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&q=80",
+      "https://images.unsplash.com/photo-1544986581-efac024faf62?w=800&q=80"
+    ],
+    "amenities": ["Private Beach", "Butler Service", "Private Pool", "Kitchen", "Multiple Bathrooms", "Terrace"],
+    "pricePerNight": 1200,
+    "available": true,
+    "maxOccupancy": 8
+  },
+  {
+    "Id": 10,
+    "hotelId": "5",
+    "name": "Tropical Paradise Suite",
+    "type": "Suite",
+    "capacity": 4,
+    "bedConfiguration": "1 King Bed + Sofa Bed",
+    "photos": [
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80",
+      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80"
+    ],
+    "amenities": ["Ocean View", "Balcony", "Mini Bar", "Room Service", "Premium Bedding"],
+    "pricePerNight": 650,
+    "available": true,
+    "maxOccupancy": 4
+  },
+  {
+    "Id": 11,
+    "hotelId": "6",
+    "name": "Heritage Suite",
+    "type": "Heritage",
+    "capacity": 3,
+    "bedConfiguration": "1 King Bed + Daybed",
+    "photos": [
+      "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800&q=80",
+      "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80"
+    ],
+    "amenities": ["Historic Character", "Garden View", "Antique Furnishing", "Mini Bar", "Historic Tours"],
+    "pricePerNight": 250,
+    "available": true,
+    "maxOccupancy": 3
+  },
+  {
+    "Id": 12,
+    "hotelId": "6",
+    "name": "Classic Historic Room",
+    "type": "Classic",
+    "capacity": 2,
+    "bedConfiguration": "1 Queen Bed",
+    "photos": [
+      "https://images.unsplash.com/photo-1578645510447-e20b4311e3ce?w=800&q=80",
+      "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800&q=80"
+    ],
+    "amenities": ["Historic Character", "Original Architecture", "Modern Amenities", "Garden Access"],
+    "pricePerNight": 180,
+    "available": true,
+    "maxOccupancy": 2
+  }
+]

@@ -1,0 +1,70 @@
+[
+  {
+    "Id": 1,
+    "userId": "user1",
+    "hotelId": "1",
+    "bookingId": "3",
+    "overallRating": 5,
+    "cleanlinessRating": 5,
+    "comfortRating": 5,
+    "locationRating": 4,
+    "valueRating": 4,
+    "reviewText": "Absolutely amazing experience! The ocean view suite was spectacular and the service was impeccable. Will definitely return.",
+    "photos": [
+      "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=600&q=80"
+    ],
+    "travelerType": "Couple",
+    "createdAt": "2024-02-15T16:30:00Z",
+    "helpfulVotes": 23
+  },
+  {
+    "Id": 2,
+    "userId": "user2",
+    "hotelId": "1",
+    "bookingId": "",
+    "overallRating": 4,
+    "cleanlinessRating": 5,
+    "comfortRating": 4,
+    "locationRating": 5,
+    "valueRating": 3,
+    "reviewText": "Great location right on the beach. The hotel is beautiful but quite expensive for what you get. Staff was very friendly.",
+    "photos": [],
+    "travelerType": "Family",
+    "createdAt": "2024-01-28T11:15:00Z",
+    "helpfulVotes": 15
+  },
+  {
+    "Id": 3,
+    "userId": "user3",
+    "hotelId": "2",
+    "bookingId": "",
+    "overallRating": 4,
+    "cleanlinessRating": 4,
+    "comfortRating": 4,
+    "locationRating": 5,
+    "valueRating": 4,
+    "reviewText": "Perfect for business travel. Central location, good facilities, and professional service. The executive lounge is a nice touch.",
+    "photos": [],
+    "travelerType": "Business",
+    "createdAt": "2024-02-01T08:45:00Z",
+    "helpfulVotes": 8
+  },
+  {
+    "Id": 4,
+    "userId": "user4",
+    "hotelId": "3",
+    "bookingId": "",
+    "overallRating": 5,
+    "cleanlinessRating": 4,
+    "comfortRating": 5,
+    "locationRating": 4,
+    "valueRating": 5,
+    "reviewText": "Cozy mountain retreat with amazing views! Perfect for a romantic getaway. The fireplace in the room was so romantic.",
+    "photos": [
+      "https://images.unsplash.com/photo-1549294413-26f195200c16?w=600&q=80"
+    ],
+    "travelerType": "Couple",
+    "createdAt": "2024-01-20T19:20:00Z",
+    "helpfulVotes": 31
+  }
+]
